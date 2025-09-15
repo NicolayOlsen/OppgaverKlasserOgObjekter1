@@ -3,11 +3,19 @@ import static javax.swing.JOptionPane.*;
 public class Main {
     public static void main(String[] args) {
         // Ticket Oppgaver
-        String inputName = showInputDialog("Navn?");
-        String inputPersonNr = showInputDialog("PersonNr?");
-        String inputDestination = showInputDialog("Destinasjon?");
-        Ticket ticket1 = new Ticket(inputName, inputPersonNr, inputDestination);
+        Ticket ticket1 = new Ticket(
+            showInputDialog("Navn?"),
+            showInputDialog("PersonNr?"),
+            showInputDialog("Destinasjon?")
+        );
         ticket1.printTicketInfoConsole();
+        String passportPersonNr = showInputDialog("Vennligst skriv inn pass person nr");
+        boolean personNrIsCorrect = ticket1.checkPersonNr(passportPersonNr);
+        if(personNrIsCorrect) {
+            showMessageDialog(null, "Velkommen ombord!");
+        } else {
+            showMessageDialog(null, "Kontakter PST");
+        }
         ticket1.printTicketInfoMessage();
 
         // Oppgave 1 og 2

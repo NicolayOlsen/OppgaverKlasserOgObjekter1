@@ -28,9 +28,11 @@ public class Ticket {
     }
 
     private String getMaskedPersonNr() {
-        String personNrWithoutLastDigits = this.personNr.substring(0, 6);
-        String maskedPersonNr = personNrWithoutLastDigits + "*****";
-        return maskedPersonNr;
+        return this.personNr.substring(0, 6) + "*****";
+    }
+
+    public boolean checkPersonNr(String passportPersonNr) {
+        return passportPersonNr.equals(this.personNr);
     }
 
     public void printTicketInfoConsole() {
@@ -40,7 +42,10 @@ public class Ticket {
     }
 
     public void printTicketInfoMessage() {
-        showMessageDialog(null, "\nNavn: " + this.name + "\n" + "PersonNr: " + getMaskedPersonNr()
-                + "\n" + "Destinasjon: " + this.destination);
+        String message = "\nTicket info"
+            + "\nNavn: " + this.name
+            + "\nPersonNr: " + getMaskedPersonNr()
+            + "\nDestinasjon: " + this.destination;
+        showMessageDialog(null, message);
     }
 }
